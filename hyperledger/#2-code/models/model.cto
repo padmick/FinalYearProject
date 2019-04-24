@@ -17,52 +17,194 @@
  */
 
 namespace org.hyperledger_composer.scms
-enum ProductDesc {
- o Shoes
- o Socks
- o Belts
- o SportsShoes
- o Flipflops
+enum ProductType {
+  o BANANAS
+  o APPLES
+  o PEARS
+  o PEACHES
+  o COFFEE
+  o MEDCINE
 }
-enum ProductSize {
- o SMALL
- o MEDIUM
- o LARGE
+
+/**
+ * The status of a shipment
+ */
+
+enum ShipmentStatus {
+  o CREATED
+  o IN_TRANSIT
+  o ARRIVED
 }
-asset Product identified by productId {
- o String productId
- o String producttype
- o ProductSize size
- o ProductDesc description
- --> Participant owner
- --> Participant issuer
+
+/**
+ * Directions of the compass
+ */
+enum CompassDirection {
+  o N
+  o S
+  o E
+  o W
 }
-participant Customer identified by email {
- o String email
- o String firstName
- o String lastName
- o String type
+
+/**
+ * An abstract transaction that is related to a Shipment
+ */
+abstract transaction ShipmentTransaction {
+  --> Shipment shipment
 }
-participant Manufacturer identified by email {
- o String email
- o String firstName
- o String lastName
- o String type
+
+/**
+ * An temperature reading for a shipment. E.g. received from a
+ * device within a temperature controlled shipping container
+ */
+transaction TemperatureReading extends ShipmentTransaction {
+  o Double celsius
+  o String latitude
+  o String longitude
+  o String readingTime
 }
-participant Distributor identified by email {
- o String email
- o String firstName
- o String lastName
- o String type
+
+/**
+ * A notification that a shipment has been received by the
+ * importer and that funds should be transferred from the importer
+ * to the grower to pay for the shipment.
+ */
+transaction ShipmentReceived extends ShipmentTransaction {
 }
-participant Retailer identified by email {
- o String email
- o String firstName
- o String lastName
- o String type
+
+/**
+ * A GPS reading for a shipment. E.g. received from a device
+ * within a shipping container
+ */
+transaction GpsReading extends ShipmentTransaction {
+  o String readingTime
+  o String readingDate
+  o String latitude
+  o CompassDirection latitudeDir
+  o String longitude
+  o CompassDirection longitudeDir
 }
-transaction MoveProduct {
- --> Product product
- --> Participant issuer
- --> Participant newOwner
+
+/**
+ * A shipment being tracked as an asset on the ledger
+ */
+asset Shipment identified by shipmentId {
+  o String shipmentId
+  o ProductType type
+  o ShipmentStatus status
+  o Long unitCount
+  --> Contract contract
+  o TemperatureReading[] temperatureReadings optional
+  o AccelReading[] AccelReadings optional
+  o GpsReading[] gpsReadings optional
+}
+
+/**
+ * Defines a contract between a Grower and an Importer to ship using
+ * a Shipper, paying a set unit price. The unit price is multiplied by
+ * a penality factor proportional to the deviation from the min and max
+ * negociated temperatures for the shipment.
+ */
+asset Contract identified by contractId {
+  o String contractId
+  --> Grower grower
+  --> Shipper shipper
+  --> Importer importer
+  o DateTime arrivalDateTime
+  o Double unitPrice
+  o Double minTemperature
+  o Double maxTemperature
+  o Double minPenaltyFactor
+  o Double maxPenaltyFactor
+  o Double maxAccel
+}
+
+/**
+ * A concept for a simple street address
+ */
+concept Address {
+  o String city optional
+  o String country
+  o String street optional
+  o String zip optional
+}
+
+
+/**
+ * An Accelerometer reading for a shipment. E.g. received from a
+ * device within an accelerometer controlled shipping container
+ *
+ * The combination of the accelerometer environment reading,
+ * PLUS the GPS location, PLUS the timestamp is what is interesting
+ * Just knowing temperature without knowing where or when is
+ * not sufficient.
+ */
+transaction AccelReading extends ShipmentTransaction {
+  o Double accel_x
+  o Double accel_y
+  o Double accel_z
+  o String latitude
+  o String longitude
+  o String readingTime
+}
+
+/**
+ * An abstract participant type in this business network
+ */
+abstract participant Business identified by email {
+  o String email
+  o Address address
+  o Double accountBalance
+}
+
+/**
+ * An event - when the temperature goes outside the agreed-upon boundaries
+ */
+event TemperatureThresholdEvent {
+  o String message
+  o Double temperature
+  o String latitude
+  o String longitude
+  o String readingTime
+  --> Shipment shipment
+}
+
+/**
+ * An event - when the acceleration event has been detected
+ */
+event AccelerationThresholdEvent {
+  o String message
+  o Double accel_x
+  o Double accel_y
+  o Double accel_z
+  o String latitude
+  o String longitude
+  o String readingTime
+  --> Shipment shipment
+}
+
+/**
+ * An event - when the ship arrives at the port
+ */
+event ShipmentInPortEvent {
+  o String message
+  --> Shipment shipment
+}
+
+/**
+ * A Grower is a type of participant in the network
+ */
+participant Grower extends Business {
+}
+
+/**
+ * A Shipper is a type of participant in the network
+ */
+participant Shipper extends Business {
+}
+
+/**
+ * An Importer is a type of participant in the network
+ */
+participant Importer extends Business {
 }
