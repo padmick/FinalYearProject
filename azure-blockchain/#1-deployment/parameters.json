@@ -1,0 +1,123 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "extensions_config_storageAccountName": {
+            "value": null
+        },
+        "extensions_config_storageAccountKey": {
+            "value": null
+        },
+        "extensions_config_commandToExecute": {
+            "value": null
+        },
+        "extensions_config_storageAccountName_1": {
+            "value": null
+        },
+        "extensions_config_storageAccountKey_1": {
+            "value": null
+        },
+        "extensions_config_commandToExecute_1": {
+            "value": null
+        },
+        "servers_db_7ty3pq_woo_name": {
+            "value": null
+        },
+        "vaults_eth7as7h6_akv_name": {
+            "value": null
+        },
+        "sites_woodblockchain_7ty3pq_name": {
+            "value": null
+        },
+        "webtests_website_ui_test_name": {
+            "value": null
+        },
+        "webtests_website_api_test_name": {
+            "value": null
+        },
+        "serverfarms_woodblockchain_plan_name": {
+            "value": null
+        },
+        "sites_woodblockchain_7ty3pq_api_name": {
+            "value": null
+        },
+        "vaults_woodblockchain_7ty3pq_name": {
+            "value": null
+        },
+        "networkInterfaces_vl_nic0_reg1_name": {
+            "value": null
+        },
+        "networkInterfaces_vl_nic1_reg1_name": {
+            "value": null
+        },
+        "storageAccounts_eth7as7h6store_name": {
+            "value": null
+        },
+        "loadBalancers_woodblockchain_lb_name": {
+            "value": null
+        },
+        "topics_woodblockchain_eg_7ty3pq_name": {
+            "value": null
+        },
+        "alertrules_website_ui_test_alert_name": {
+            "value": null
+        },
+        "components_woodblockchain_7ty3pq_name": {
+            "value": null
+        },
+        "loadBalancers_eth7as7h6_vlLb_reg1_name": {
+            "value": null
+        },
+        "alertrules_website_api_test_alert_name": {
+            "value": null
+        },
+        "virtualMachines_vl_eth7as7h6_reg1_0_name": {
+            "value": null
+        },
+        "virtualMachines_vl_eth7as7h6_reg1_1_name": {
+            "value": null
+        },
+        "virtualNetworks_eth7as7h6_vnet_reg1_name": {
+            "value": null
+        },
+        "virtualNetworks_woodblockchain_vnet_name": {
+            "value": null
+        },
+        "IoTApps_blockchain_iot_connection_name": {
+            "value": null
+        },
+        "workspaces_eth7as7h6_oms_name": {
+            "value": null
+        },
+        "storageAccounts_7ty3pqwoodblockchain_name": {
+            "value": null
+        },
+        "publicIPAddresses_eth7as7h6_lbpip_reg1_name": {
+            "value": null
+        },
+        "namespaces_woodblockchain_sb_7ty3pq_name": {
+            "value": null
+        },
+        "availabilitySets_poaAvailabilitySet_reg1_name": {
+            "value": null
+        },
+        "networkSecurityGroups_eth7as7h6_vlNsg_reg1_name": {
+            "value": null
+        },
+        "publicIPAddresses_woodblockchain_lb_public_ip_name": {
+            "value": null
+        },
+        "virtualMachineScaleSets_woodblockchain_worker_n_name": {
+            "value": null
+        },
+        "alertrules_Failure_Anomalies___woodblockchain_7ty3pq_name": {
+            "value": null
+        },
+        "networkSecurityGroups_woodblockchain_subnet_workers_nsg_name": {
+            "value": null
+        },
+        "disks_woodblockchain_workewoodblockchain_workerOS__1_b0d5560091bb401d817f864fc6fe3983_externalid": {
+            "value": null
+        }
+    }
+}
