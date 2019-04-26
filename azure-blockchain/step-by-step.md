@@ -36,3 +36,7 @@ resources include:
 
 To deploy from the template included above please refer to the azure documentation https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-quickstart-create-templates-use-the-portal#edit-and-deploy-the-template
 Most rules for LB and NSG would need to be changed from wood defaults to your local resource defaults.
+
+References:
+https://channel9.msdn.com/Shows/Blocktalk/Building-your-first-Azure-Blockchain-Workbench-application
+https://channel9.msdn.com/Shows/Blocktalk/Introduction-to-Azure-Blockchain-Workbench

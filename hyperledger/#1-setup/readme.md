@@ -24,3 +24,7 @@ export FABRIC_VERSION=hlfv11
 ./downloadFabric.sh
 ./startFabric.sh
 ./createPeerAdminCard.sh
+
+References:
+https://hyperledger.github.io/composer/v0.19/tutorials/deploy-to-fabric-single-org 
+https://medium.com/cochain/hyperledger-fabric-on-windows-10-26723116c636
